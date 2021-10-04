@@ -7,7 +7,7 @@ class AboutExceptions(Koan):
 
     class MySpecialError(RuntimeError):
         pass
-
+# https://docs.python.org/3/tutorial/errors.html
     def test_exceptions_inherit_from_exception(self):
         mro = self.MySpecialError.mro()
         self.assertEqual(__, mro[1].__name__)
