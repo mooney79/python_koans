@@ -33,8 +33,35 @@ from runner.koan import *
 # Your goal is to write the score method.
 
 def score(dice):
-    # You need to write this method
-    pass
+    # pass
+    
+    # create a dictionary of die faces and quantity rolled of each
+    face_count = {}.fromkeys(range(1,7), 0)
+    score = 0
+
+    #fill the dictionary with results
+    for die in dice:
+        face_count[die] += 1
+    
+    #... account for sets of 3
+    for die in range(2,7):
+        score += (face_count[die] // 3) * 100 * die
+    score += (face_count[1] // 3) * 1000
+
+    #... and individual scorers
+    score += (face_count[1] % 3) * 100
+    score += (face_count[5] % 3) * 50
+    # print(face_count)
+
+    return score
+
+# print(score([2,2,2,4,1]))
+
+
+# """
+
+#pull out any sets of 3.  Score them.  Then look for any remaining 1s and 5s.
+#score them.
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
